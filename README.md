@@ -11,3 +11,5 @@ npm i modhook
 ```
 
 It has typescript typings included.
+
+The DLL is sources from https://github.com/meguminsama/discord-modhook
