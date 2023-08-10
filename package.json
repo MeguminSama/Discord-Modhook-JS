@@ -1,6 +1,6 @@
 {
   "name": "modhook",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Memory Injection of Mods for Discord",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -21,7 +21,7 @@
   "files": [
     "package.json",
     "pnpm-lock.yaml",
-    "dist",
+    "dist/**/*",
     "LibModHook.dll",
     "ModHookInjection.dll",
     "resource.template.js",
