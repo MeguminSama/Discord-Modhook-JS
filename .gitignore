@@ -3,3 +3,5 @@ dist
 tmp
 profiles
 libmodhook.db
+LibModHook.dll
+ModHookInjection.dll
