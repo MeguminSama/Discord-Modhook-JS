@@ -22,8 +22,6 @@
     "package.json",
     "pnpm-lock.yaml",
     "dist/**/*",
-    "LibModHook.dll",
-    "ModHookInjection.dll",
     "resource.template.js",
     ".gitignore"
   ],
