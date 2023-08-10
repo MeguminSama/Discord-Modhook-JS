@@ -1,0 +1,42 @@
+{
+  "name": "modhook",
+  "version": "1.0.0",
+  "description": "Memory Injection of Mods for Discord",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "Discord",
+    "Memory Injection"
+  ],
+  "author": {
+    "name": "Rie Takahashi",
+    "email": "megumin@megu.dev",
+    "url": "https://github.com/meguminsama"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts"
+  },
+  "files": [
+    "package.json",
+    "pnpm-lock.yaml",
+    "dist",
+    "LibModHook.dll",
+    "ModHookInjection.dll",
+    "resource.template.js",
+    ".gitignore"
+  ],
+  "dependencies": {
+    "@electron/asar": "^3.2.4",
+    "glob": "^10.3.3",
+    "koffi": "^2.5.11",
+    "sqlite3": "^5.1.6",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.9",
+    "@types/uuid": "^9.0.2",
+    "tsx": "^3.12.7",
+    "typescript": "^5.1.6"
+  }
+}
