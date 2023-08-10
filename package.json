@@ -1,6 +1,6 @@
 {
   "name": "modhook",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Memory Injection of Mods for Discord",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,6 +13,7 @@
     "email": "megumin@megu.dev",
     "url": "https://github.com/meguminsama"
   },
+  "homepage": "https://github.com/meguminsama/discord-modhook-js",
   "scripts": {
     "build": "tsc",
     "dev": "tsx src/index.ts"
