@@ -60,6 +60,7 @@ export async function updateProfile(profile: Profile): Promise<Profile> {
 		profile.asarHookToggleQuery ?? profile.pathToModLoader,
 		profile.id
 	);
+	await promisify(stmt.run.bind(stmt))();
 	await promisify(stmt.finalize.bind(stmt))();
 	return await getProfile(profile.id);
 }
