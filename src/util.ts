@@ -24,15 +24,6 @@ const PATH_TO_CLIENT_MOD = ${JSON.stringify(profile.pathToModLoader)};
 /// END MODHOOK INFO ///\n\n`;
 }
 
-function fileIsInUse(path: string) {
-	try {
-		fs.accessSync(path, fs.constants.F_OK | fs.constants.W_OK);
-		return false;
-	} catch (err) {
-		return true;
-	}
-}
-
 export async function buildProfile(id: string, jsTemplateLocation: string) {
 	const profile = await Database.getProfile(id);
 
@@ -40,10 +31,7 @@ export async function buildProfile(id: string, jsTemplateLocation: string) {
 	const asarDestination = getProfileDist(profile.id);
 
 	if (fs.existsSync(asarDestination)) {
-		if (fileIsInUse(asarDestination)) {
-			throw new Error(`Cannot build profile ${profile.name} because the ASAR is in use. Close Discord and try again.`);
-		}
-		fs.rmSync(asarDestination, { force: true });
+		fs.rmSync(asarDestination, { force: true, recursive: true });
 	}
 
 	// Create a temporary directory for the ASAR to be based on.
