@@ -30,10 +30,6 @@ export async function buildProfile(id: string, jsTemplateLocation: string) {
 	const tmpDir = getTmpDir(profile.name);
 	const asarDestination = getProfileDist(profile.id);
 
-	if (fs.existsSync(asarDestination)) {
-		fs.rmSync(asarDestination, { force: true, recursive: true });
-	}
-
 	// Create a temporary directory for the ASAR to be based on.
 	fs.writeFileSync(path.resolve(tmpDir, 'package.json'), JSON.stringify({ name: "Discord", main: "index.js" }));
 

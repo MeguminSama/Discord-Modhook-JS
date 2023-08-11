@@ -1,6 +1,6 @@
 {
   "name": "modhook",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "description": "Memory Injection of Mods for Discord",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
