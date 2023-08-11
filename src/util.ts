@@ -3,7 +3,6 @@ import path from "path";
 import asar from "@electron/asar";
 import * as Database from './database';
 
-const jsTemplatePath = path.resolve(__dirname, '../resource.template.js');
 const profileDist = ensureDir(path.resolve('profiles'));
 const profileTmpDir = ensureDir(path.resolve('tmp'));
 const getTmpDir = (name: string) => ensureDir(path.resolve(profileTmpDir, name));
@@ -34,7 +33,7 @@ function fileIsInUse(path: string) {
 	}
 }
 
-export async function buildProfile(id: string) {
+export async function buildProfile(id: string, jsTemplateLocation: string) {
 	const profile = await Database.getProfile(id);
 
 	const tmpDir = getTmpDir(profile.name);
@@ -50,7 +49,7 @@ export async function buildProfile(id: string) {
 	// Create a temporary directory for the ASAR to be based on.
 	fs.writeFileSync(path.resolve(tmpDir, 'package.json'), JSON.stringify({ name: "Discord", main: "index.js" }));
 
-	const template = fs.readFileSync(jsTemplatePath, 'utf8');
+	const template = fs.readFileSync(jsTemplateLocation, 'utf8');
 
 	fs.writeFileSync(path.resolve(tmpDir, 'index.js'), makeTemplateHeader(profile) + template);
 
