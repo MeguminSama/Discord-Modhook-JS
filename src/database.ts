@@ -8,7 +8,7 @@ export interface Profile {
 	id: string;
 	name: string;
 	description?: string;
-	customUserDirName: string;
+	customUserDirName?: string;
 	pathToModLoader: string;
 	originalAsarName: string;
 	asarHookToggleQuery?: string;
@@ -20,7 +20,7 @@ db.serialize(() => {
 			id TEXT PRIMARY KEY,
 			name TEXT NOT NULL,
 			description TEXT,
-			customUserDirName TEXT NOT NULL,
+			customUserDirName TEXT,
 			pathToModLoader TEXT NOT NULL,
 			originalAsarName TEXT NOT NULL,
 			asarHookToggleQuery TEXT NOT NULL
