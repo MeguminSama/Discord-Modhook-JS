@@ -3,7 +3,7 @@ import path from "path";
 import asar from "@electron/asar";
 import * as Database from './database';
 
-const jsTemplatePath = path.resolve(process.cwd(), 'resource.template.js');
+const jsTemplatePath = path.resolve(__dirname, '../resource.template.js');
 const profileDist = ensureDir(path.resolve('profiles'));
 const profileTmpDir = ensureDir(path.resolve('tmp'));
 const getTmpDir = (name: string) => ensureDir(path.resolve(profileTmpDir, name));
