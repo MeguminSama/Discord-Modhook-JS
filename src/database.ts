@@ -2,8 +2,8 @@ import { promisify } from "util";
 import sqlite3 from "sqlite3";
 import { v4 as uuid } from "uuid";
 
-const db = new sqlite3.Database("libmodhook.db");
-
+let db: sqlite3.Database;
+let initialised = false;
 export interface Profile {
 	id: string;
 	name: string;
@@ -14,18 +14,24 @@ export interface Profile {
 	asarHookToggleQuery?: string;
 }
 
-db.serialize(() => {
-	db.run(`
-		CREATE TABLE IF NOT EXISTS modhook_profiles (
-			id TEXT PRIMARY KEY,
-			name TEXT NOT NULL,
-			description TEXT,
-			customUserDirName TEXT,
-			pathToModLoader TEXT NOT NULL,
-			originalAsarName TEXT NOT NULL,
-			asarHookToggleQuery TEXT NOT NULL
-		)`);
-});
+export function initDatabase(dbPath?: string) {
+	if (initialised) return;
+	db = new sqlite3.Database(dbPath || "libmodhook.db");
+
+	db.serialize(() => {
+		db.run(`
+			CREATE TABLE IF NOT EXISTS modhook_profiles (
+				id TEXT PRIMARY KEY,
+				name TEXT NOT NULL,
+				description TEXT,
+				customUserDirName TEXT,
+				pathToModLoader TEXT NOT NULL,
+				originalAsarName TEXT NOT NULL,
+				asarHookToggleQuery TEXT NOT NULL
+			)`);
+	});
+	initialised = true;
+}
 
 export async function getProfiles(): Promise<Profile[]> {
 	return await promisify(db.all.bind(db))("SELECT * FROM modhook_profiles");

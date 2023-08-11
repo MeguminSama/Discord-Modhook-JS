@@ -5,11 +5,22 @@ import * as Downloader from "./ModDownloader";
 import * as Database from "./database";
 import * as util from "./util";
 
+export interface ModHookOpts {
+	jsTemplateLocation?: string;
+	databasePath?: string;
+	profileDir?: string;
+}
+
 export class ModHook {
 	public readonly discord: Discord = new Discord();
 	public readonly downloader = Downloader;
+	public readonly jsTemplateLocation = path.resolve(__dirname, "../resource.template.js")
 
-	constructor(public jsTemplateLocation = path.resolve(__dirname, "../resource.template.js")) { }
+	constructor(opts: ModHookOpts) {
+		if (opts.jsTemplateLocation) this.jsTemplateLocation = opts.jsTemplateLocation;
+		if (opts.profileDir) util.setProfileDir(opts.profileDir);
+		Database.initDatabase(opts.databasePath);
+	}
 
 	getProfiles() {
 		return Database.getProfiles();

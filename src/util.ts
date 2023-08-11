@@ -3,12 +3,18 @@ import path from "path";
 import asar from "@electron/asar";
 import * as Database from './database';
 
-const profileDist = ensureDir(path.resolve('profiles'));
+let _profileDir = "profiles";
+
+export function setProfileDir(dir: string) {
+	_profileDir = dir;
+}
+
+const profileDist = () => ensureDir(path.resolve(_profileDir));
 const profileTmpDir = ensureDir(path.resolve('tmp'));
 const getTmpDir = (name: string) => ensureDir(path.resolve(profileTmpDir, name));
-export const getProfileDist = (id: string) => path.resolve(profileDist, `${id}.asar`);
+export const getProfileDist = (id: string) => path.resolve(profileDist(), `${id}.asar`);
 
-function ensureDir(dir: string) {
+export function ensureDir(dir: string) {
 	if (!fs.existsSync(dir)) {
 		fs.mkdirSync(dir, { recursive: true });
 	}
