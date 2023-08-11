@@ -44,6 +44,8 @@ export async function buildProfile(id: string, jsTemplateLocation: string) {
 	// Create the ASAR
 	await asar.createPackage(tmpDir, asarDestination).catch(console.error);
 
+	asar.uncacheAll();
+
 	// Delete the temporary directory
 	fs.rmSync(tmpDir, { recursive: true });
 }
