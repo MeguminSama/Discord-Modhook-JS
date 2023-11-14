@@ -2,6 +2,10 @@
 
 Memory injection of Mods for Discord.
 
+## This project has been moved.
+https://github.com/MeguminSama/Discord-ModLoader
+
+
 Available on NPM at https://www.npmjs.com/package/modhook
 
 You can install it with:
